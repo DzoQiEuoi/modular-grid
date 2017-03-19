@@ -1,0 +1,75 @@
+.pad {
+    padding-left: floor($gutter / 2);
+    padding-right: ceil($gutter / 2);
+}
+
+.container-common {
+    composes: pad;
+    box-sizing: border-box;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.container {
+    composes: clearfix from "./helpers.scss";
+    composes: container-common;
+    @each $breakpoint, $min in $breakpoints {
+        @media screen and (min-width: $min) {
+            @if $min == 0 { width: 100% };
+            @if $min != 0 { width: $min };
+        }
+    }
+}
+
+.container-fluid {
+    composes: container-common;
+}
+
+.row {
+    composes: clearfix from "./helpers.scss";
+    margin-left: ceil($gutter / -2);
+    margin-right: floor($gutter / -2);    
+}
+
+.column {
+    composes: pad;
+    box-sizing: border-box;
+    display: block;
+    float: left;
+    position: relative;
+}
+
+@each $breakpoint, $min in $breakpoints {
+    @media screen and (max-width: $min - 1) {
+        .visible-from-#{$breakpoint},
+        .hidden-until-#{$breakpoint} {
+            display: none;
+        }
+    }
+
+    @media screen and (min-width: $min) {
+        .visible-until-#{$breakpoint}
+        .hidden-from-#{$breakpoint} {
+            display: none;
+        }
+
+        @for $i from 1 through $columns {
+            .col-#{$breakpoint}-#{$i} {
+                composes: column;                
+                width: percentage($i / $columns);
+            }
+
+            .col-#{$breakpoint}-offset-#{$i} {
+                margin-left: percentage($i / $columns);
+            }
+
+            .col-#{$breakpoint}-push-#{$i} {
+                left: percentage($i / $columns);
+            }
+
+            .col-#{$breakpoint}-pull-#{$i} {
+                right: percentage($i / $columns);
+            }
+        }
+    }
+}

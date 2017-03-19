@@ -1,0 +1,22 @@
+{
+  "name": "modular-grid",
+  "version": "1.0.0",
+  "description": "A bootsrap-style grid system for use with CSS Modules",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DzoQiEuoi/modular-grid.git"
+  },
+  "main": "grid.scss",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "css modules",
+    "grid",
+    "scss",
+    "sass",
+    "bootstrap"
+  ],
+  "author": "DzoQiEuoi",
+  "license": "ISC"
+}
