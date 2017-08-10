@@ -1,3 +1,5 @@
+@import "config";
+
 .pad {
     padding-left: floor($gutter / 2);
     padding-right: ceil($gutter / 2);
